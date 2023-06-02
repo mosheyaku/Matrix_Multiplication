@@ -30,6 +30,9 @@ public class Main {
 
         setMatrix(matB, rand, m, p);
 
+        displayMatrix(matA, 'A');
+
+        displayMatrix(matB, 'B');
     }
 
 
@@ -48,5 +51,16 @@ public class Main {
                 matrix[i][j] = rand.nextInt(UPPER_BOUND_OF_MATRIX_VALUES);
             }
         }
+    }
+
+    public static void displayMatrix(int[][] matrix, char matrixName) {
+        System.out.println("Matrix " + matrixName);
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
