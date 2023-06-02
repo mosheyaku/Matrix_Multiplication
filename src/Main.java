@@ -1,6 +1,9 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    private static final int UPPER_BOUND_OF_MATRIX_VALUES = 11;
 
     public static void main(String[] args) {
         boolean isValidMatrixSizes = false;
@@ -17,6 +20,16 @@ public class Main {
                 System.out.println("Error!\nPlease choose positive numbers.\n");
             }
         }
+
+        int[][] matA = new int[n][m];
+        int[][] matB = new int[m][p];
+
+        Random rand = new Random();
+
+        setMatrix(matA, rand, n, m);
+
+        setMatrix(matB, rand, m, p);
+
     }
 
 
@@ -27,5 +40,13 @@ public class Main {
         if (size < 1)
             throw new Error();
         return size;
+    }
+
+    public static void setMatrix(int[][] matrix, Random rand, int row, int col) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                matrix[i][j] = rand.nextInt(UPPER_BOUND_OF_MATRIX_VALUES);
+            }
+        }
     }
 }
