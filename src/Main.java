@@ -33,6 +33,14 @@ public class Main {
         displayMatrix(matA, 'A');
 
         displayMatrix(matB, 'B');
+
+        MyMonitor monitor = new MyMonitor(n, p);
+        MatrixMultiplication t[][] = new MatrixMultiplication[n][p];
+
+        createThreads(t, matA, matB, monitor, m);
+
+        System.out.println("The multiplication of matrix A and matrix B:");
+        runThreads(t);
     }
 
 
@@ -62,5 +70,21 @@ public class Main {
             System.out.println();
         }
         System.out.println();
+    }
+
+    public static void createThreads(MatrixMultiplication t[][], int[][] matA, int[][] matB, MyMonitor monitor, int m) {
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[0].length; j++) {
+                t[i][j] = new MatrixMultiplication(matA, matB, i, j, m, monitor);
+            }
+        }
+    }
+
+    public static void runThreads(MatrixMultiplication t[][]) {
+        for (int i = 0; i < t.length; i++) {
+            for (int j = 0; j < t[0].length; j++) {
+                t[i][j].start();
+            }
+        }
     }
 }
